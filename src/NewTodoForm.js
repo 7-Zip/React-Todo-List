@@ -11,20 +11,20 @@ class NewTodoForm extends Component {
 
     handleChange(evt) {
         this.setState({
-            [evt.target.name]: evt.target.value
+           [evt.target.name]: evt.target.value
         });
     }
 
     handleSubmit(evt) {
         // prevent page from reloading on submit
         evt.preventDefault();
-        this.props.createTodo({...this.state, id: uuid()});
+        this.props.createTodo({...this.state, id: uuid(), completed: false});
         this.setState({task: ""});
     }
 
     render() {
         return (
-            <form className={"NewTodoForm"} onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}>
                 <label htmlFor="task">New Todo</label>
                 <input id={"task"} name={"task"} type="text" placeholder={"New Todo"} value={this.state.task} onChange={this.handleChange}/>
                 <button>Add Todo</button>
